@@ -77,6 +77,7 @@
 % Package Options
 \tcbuselibrary{minted}
 \tcbuselibrary{skins}
+\tcbuselibrary{xparse}
 
 \RequirePackage{wrapfig}
 \setlength{\intextsep}{0pt} % "top" vertical spacing in wrapfig
@@ -121,8 +122,10 @@
 % as in IEEE style.
 \let\@afterindentfalse\@afterindenttrue
 
-% Indented blocks.
+
+% Indented blocks
 \newcommand{\indentBlock}[1]{\noindent\hangafter=0\hangindent=#1\parindent\ignorespaces}
+% Hanging blocks.
 \newcommand{\indentHang}{\noindent\hangafter=1\hangindent=\parindent\ignorespaces}
 
 % InLine Markup
@@ -131,7 +134,7 @@
     arc=2pt,
     boxsep=0pt,
     left=17pt,right=2.5pt,top=2.5pt,bottom=2.5pt,
-    boxrule=0.5pt,
+    boxrule=0.7pt,
     colback=colLibBody,
     colframe=colLibFrame,
     coltext=Z0,
@@ -148,7 +151,7 @@
     outer arc=0pt,
     boxsep=0pt,
     left=2pt,right=2pt,top=2pt,bottom=2pt,
-    boxrule=0.5pt,
+    boxrule=0.7pt,
     colback=colPreBody,
     colframe=colPreFrame,
     coltext=colPreText,
@@ -236,7 +239,8 @@
 }
 
 % Code Block
-\newtcblisting{code}[1]{
+\newtcblisting[auto counter,number format=\arabic,
+  list inside=code]{code}[1]{
 	fontupper=\tt,
 	listing engine=minted,
 	listing only,
@@ -252,6 +256,34 @@
 	    \end{tcbclipinterior}
      },
 }
+
+% Usage:
+% \begin{lazycode}[This is the title,   label={myCodeLabel},nameref={Code title or whatever}]{<programing language>}
+% ...
+% \end{lazycode}
+
+\newtcblisting[auto counter,number format=\arabic,
+  list inside=code]{lazycode}[2][]{
+	fontupper=\tt,
+	listing engine=minted,
+	listing only,
+	colback=colMintedBg,
+	colframe=colMintedRule,
+	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
+	left=30pt,right=10pt,top=10pt,bottom=10pt,
+	title=Code \thetcbcounter: #1,
+	attach boxed title to bottom center,
+	colbacktitle=Z99,coltitle=Z0,
+	boxed title style={colframe=Z99},
+	minted language=#2,
+	minted options={breaklines,autogobble,linenos,numbersep=3mm},
+	enhanced,overlay={
+		\begin{tcbclipinterior}
+			\fill[colMintedGutter] (frame.south west) rectangle ([xshift=30pt]frame.north west);
+	    \end{tcbclipinterior}
+     },
+}
+
 
 \newtcblisting{literal}{
 	fontupper=\tt,

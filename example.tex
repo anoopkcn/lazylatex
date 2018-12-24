@@ -46,7 +46,7 @@ Line two is the value of the variable x (i.e. 7) and line three is the address w
 \end{equation}
 
 \subsection{Pointers}
-A pointer is a special kind of datatype which takes a reference as its value . It is defined in the program as *datatype (i.e. \texttt{*int, *uint, *char, *byte}, etc,) they declare a \pre{pointer} object which points to something(variables, constants, etc.) with a given datatype.
+A pointer is a special kind of datatype which takes a reference as its value . It is defined in the program as *datatype (i.e. \texttt{*int, *uint, *char, *byte}, etc,) they declare a \pre{pointer} object which points to something(variables, constants, etc.) with a given datatype. Code \nameref{myCodeLabel}
 In the program given below line 9 and 10 prints the same address
 %
 \begin{code}{go}
@@ -77,7 +77,7 @@ As one can notice line three and four are the same. In order to get the value of
 	Not to be confused with multiplication operator \texttt{*} or the asterisk in front of the pointer data type \texttt{*datatype}
 \end{note}
 %
-\begin{code}{go}
+\begin{lazycode}[title,label={myCodeLabel},nameref={Code title or whatever}]{go}
 package main
 
 import "fmt"
@@ -90,7 +90,7 @@ func main() {
   fmt.Println(xptr)
   fmt.Println(*xptr)
 }
-\end{code}
+\end{lazycode}
 %
 Result:
 %
@@ -155,7 +155,11 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed 
 	\hline
 	Blue  & 3000.00 & 4000.00 &  5000.00  & 18000.00\\
 	\hline
-	Sum   & 6000.00 & 9000.00 & 12000.00  & 42000.00
+	Sum   & 6000.00 & 9000.00 & 12000.00  & 42000.00\\
+	\hline
+	Blue  & 3000.00 & 4000.00 &  5000.00  & 18000.00\\
+	\hline
+	Gray  & 3000.00 & 4000.00 &  5000.00  & 18000.00\\
 	\end{lazytable}
 	\caption{this is a table2}
 	\label{mytable2}
