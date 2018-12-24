@@ -1,4 +1,4 @@
-%go_notes.tex
+%example.tex
 
 \documentclass[12pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
@@ -7,14 +7,18 @@
 \usepackage{lipsum}
 \usepackage{amsmath}
 
-\renewcommand{\familydefault}{\sfdefault}
 \begin{document}
 %
 \section{Inline Markup}
-Paragraphs contain text and may contain inline markup: \emph{emphasis}, \emph{\bf strong emphasis}, \pre{inline literals}, If a software library or a package is mentioned then use \lib{PackageName} 
-\subsection{code format}
-Everything in a \lib{golang} program which is stored somewhere has a memory address. If one declares a variable and assigns a value to it then one can \pre{reference} the memory address of the stored value using \pre{\&} operator(not exactly, because \pre{\&} operator returns a \pre{pointer}, its in the next subsection). This operate from the left of the variable(operation on the right has no meaning and will throw an error) for Example: pointers.go
+Documents contain text and may contain inline markup: \pre{inline literals}, \emph{emphasis}, \textbf{strong emphasis}, stand alone links (\url{https://www.wikibooks.org}), external hyperlinks (\href{https://www.wikibooks.org}{wikibooks home}), and \guilabel{some action}. For software library or a package use \lib{PackageName}
 \lipsum[1]
+
+\indentBlock{}{is is an indent block tas. Mauris ut leo. Cras viverra this is an indent block tas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus sit}
+
+\indentHang{this is an indent block tas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus sit amet tortor gravida placerat. Integer sapien est, iaculis in, preti}
+
+\subsection{code format}
+
 %
 \begin{code}{go}
 package main
@@ -28,37 +32,19 @@ func main() {
 }
 \end{code}
 %
-If we run the above program 
+If we run the above program
 \begin{literal}
-go run pointers.go
+>> go run pointers.go
 7
 0xc00001c0a8
 \end{literal}
 %
-Line two is the value of the \guilabel{variable} x (i.e. 7) and line three is the address where it is stored (i.e. 0xc00001c0a8)
+Line two is the value of the variable x (i.e. 7) and line three is the address where it is stored (i.e. 0xc00001c0a8)
 \begin{equation}
   e^{i\pi}+1=0
   \label{eqn:euler}
 \end{equation}
 
-%
-%\begin{figure}[H]
-%\centering
-%\begin{tikzpicture}
-%	\node at (2.5,2.5) {Variable Name:};
-%	\draw [draw=R0] (5,2) rectangle (10,3);
-%	\node at (7.5,2.5) {x};
-%	
-%	\node at (2.5,1.5) {Variable Value:};
-%	\draw [fill=G1, draw=G0] (5,1) rectangle (10,2);
-%	\node at (7.5,1.5) {3};
-%	
-%	\node at (2.5,0.5) {Variable addres:};
-%	\draw [draw=B0] (5,0) rectangle (10,1);
-%	\node at (7.5,0.5) {0xc00001c0a8};
-%\end{tikzpicture}
-%\end{figure}
-%
 \subsection{Pointers}
 A pointer is a special kind of datatype which takes a reference as its value . It is defined in the program as *datatype (i.e. \texttt{*int, *uint, *char, *byte}, etc,) they declare a \pre{pointer} object which points to something(variables, constants, etc.) with a given datatype.
 In the program given below line 9 and 10 prints the same address
@@ -73,21 +59,21 @@ func main() {
   var xptr *int = &x
   fmt.Println(x)
   fmt.Println(&x)
-  fmt.Println(xptr) 
+  fmt.Println(xptr)
 }
 \end{code}
 %
 Running the above program
-\begin{code}{bash}
-$ go run pointers.go
+\begin{literal}
+>> go run pointers.go
 73
 0xc00001c0a8
 0xc00001c0a8
-\end{code}
+\end{literal}
 %
 As one can notice line three and four are the same. In order to get the value of what the pointer is pointing at one can use the \pre{*} operator. This operator operates from the left of the pointer variable. Operating on the right has no meaning if the variable is a pointer and if the variable is any-other datatype then it has the usual meaning of multiplication. Since \pre{*} is doing the opposite of the referencing operator \pre{\&} it is called \pre{dereference} operator. The following example illustrates the operation.
 %
-\begin{note} 
+\begin{note}
 	Not to be confused with multiplication operator \texttt{*} or the asterisk in front of the pointer data type \texttt{*datatype}
 \end{note}
 %
@@ -102,19 +88,19 @@ func main() {
   fmt.Println(x)
   fmt.Println(&x)
   fmt.Println(xptr)
-  fmt.Println(*xptr) 
+  fmt.Println(*xptr)
 }
 \end{code}
 %
 Result:
 %
-\begin{code}{bash}
-$ go run pointers.go
+\begin{literal}
+>> go run pointers.go
 73
 0xc00001c0a8
 0xc00001c0a8
 73
-\end{code}
+\end{literal}
 
 \begin{warning}this is a warning\end{warning}
 \begin{tip}{this is a tiphint}\end{tip}
@@ -122,10 +108,10 @@ $ go run pointers.go
 
 Sed ut \textbf{Table} ~\ref{mytable} unde \textbf{Table} \ref{mytable2} omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
 %
-\begin{wrapfigure}{r}{0.5\textwidth}
+\begin{wrapfigure}{R}{0.7\textwidth}
 	\begin{sidebar}{My Own Heading}
-	Nam dui ligula, fringilla a, euismo d so dales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus lib ero, pretium at, lob ortis vitae, ul- tricies et, tellus. Donec aliquet, tortor sed accumsan bib endum, erat ligula aliquet magna, vitae ornare o dio metus a mi. Morbi ac orci et nisl hendrerit mollis. Susp endisse ut massa. Cras nec ante. Pellentesque a nulla. Cum so ciis nato que p enatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt urn
-\end{sidebar}
+		Nam dui ligula, fringilla a, euismo d so dales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus lib ero, pretium at, lob ortis vitae, ul- tricies et, tellus. Donec aliquet, tortor sed accumsan bib endum, erat ligula aliquet magna, vitae ornare o dio metus a mi. Morbi ac orci et nisl hendrerit mollis. Susp endisse
+	\end{sidebar}
 \end{wrapfigure}
 %
 Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit \lib{helloMKL}
@@ -154,16 +140,16 @@ Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed 
 \end{table}
 \lipsum[2]
 
-\begin{bquote}
-    this is a Block Quote . Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. Cum sociis natoque pe 
-\end{bquote}
+\indentBlock{}{
+    this is a Block Quote . Nam lacus libero, pretium at, lobortis vitae, ultricies et, tellus. Donec aliquet, tortor sed accumsan bibendum, erat ligula aliquet magna, vitae ornare odio metus a mi. Morbi ac orci et nisl hendrerit mollis. Suspendisse ut massa. Cras nec ante. Pellentesque a nulla. Cum sociis natoque pe
+}
 
 \begin{table}[h!]
 	\begin{lazytable}{Z|Z|Z|Z|Z}
 	\bf Group & \bf One     & \bf Two     & \bf Three     & \bf Sum\\
 	\hline
 	\hline
-	Red   & 1000.00 & 2000.00 &  3000.00  & 10000.00\\
+	Red & 1000.00 & 2000.00 &  3000.00  & 10000.00\\
 	\hline
 	Green & 2000.00 & 3000.00 &  4000.00  & 14000.00\\
 	\hline

@@ -12,19 +12,6 @@
     headsep=6mm,
     footskip=6mm]{geometry}
 \RequirePackage[table]{xcolor}
-\RequirePackage{tcolorbox}
-\RequirePackage[outputdir=.texpadtmp]{minted}
-\RequirePackage{tikz}
-
-% following are for tables
-\RequirePackage{wrapfig}
-\RequirePackage{array,tabularx}
-\RequirePackage{colortbl}
-
-% Package Options
-\tcbuselibrary{minted}
-\tcbuselibrary{skins}
-
 % Color definitions
 \definecolor{Z99}{HTML}{ffffff}
 \definecolor{Z0}{HTML}{000000}
@@ -51,46 +38,93 @@
 \definecolor{V1}{HTML}{d2ff4d}
 \definecolor{V2}{HTML}{ecffb3}
 %
-
 \definecolor{colPreBody}{HTML}{FFFFFF}
 \definecolor{colPreFrame}{HTML}{D9DEDF}
 \definecolor{colPreText}{HTML}{DE352E}
-
 \definecolor{colLibBody}{HTML}{E5FFE5}
 \definecolor{colLibHead}{HTML}{7FDFA0}
 \definecolor{colLibFrame}{HTML}{61ab54}
 \definecolor{colLibText}{HTML}{404040}
-
 \definecolor{colGuilabelBody}{HTML}{E7F2FA}
 \definecolor{colGuilabelFrame}{HTML}{7FBBE3}
 \definecolor{colGuilabelText}{HTML}{404040}
-
 \definecolor{colNoticeHead}{HTML}{6AB0DE}
 \definecolor{colNoticeBody}{HTML}{E4EFF7}
-
 \definecolor{colWarningHead}{HTML}{F0B27E}
 \definecolor{colWarningBody}{HTML}{FEECCA}
-
 \definecolor{colErrorHead}{HTML}{F19F97}
 \definecolor{colErrorBody}{HTML}{FDF3F2}
-
 \definecolor{colTipHead}{HTML}{18BC9B}
 \definecolor{colTipBody}{HTML}{DBFAF4}
-
 \definecolor{colSidebarHead}{HTML}{E0E4E5}
 \definecolor{colSidebarBody}{HTML}{F2F6F6}
 \definecolor{colSidebarFrame}{HTML}{E0E4E5}
-
 \definecolor{colTableFrame}{HTML}{E0E4E5}
 \definecolor{colTableRowOdd}{HTML}{F2F6F6}
-
 \definecolor{colMintedBg}{HTML}{EDFFCC}
 \definecolor{colMintedRule}{HTML}{E0E4E5}
 \definecolor{colMintedGutter}{HTML}{e4ffb3}
 \definecolor{colMintedLinenos}{HTML}{999999}
-
 \definecolor{colMintedLiteralBg}{HTML}{F8F8F8}
 \definecolor{colMintedLiteralRule}{HTML}{E0E4E5}
+\definecolor{colLink}{HTML}{2880B9}
+
+%
+\RequirePackage[outputdir=.texpadtmp]{minted}
+\RequirePackage{tikz}
+
+\RequirePackage{tcolorbox}
+% Package Options
+\tcbuselibrary{minted}
+\tcbuselibrary{skins}
+
+\RequirePackage{wrapfig}
+\setlength{\intextsep}{0pt} % "top" vertical spacing in wrapfig
+% following are for tables
+\RequirePackage{array,tabularx}
+\RequirePackage{colortbl}
+
+% Minted Line Number Colors
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor{Z3}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+% Tabularx settings
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
+\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows
+
+% PDF styling and links
+\RequirePackage{hyperref}
+% Hyperref settings
+\hypersetup{
+	unicode=true,
+	bookmarks=true,
+	bookmarksopen=true,
+	pdfstartview=FitH,
+	pdfpagelayout=OneColumn,
+	pdfpagemode=UseOutlines,
+	colorlinks=true,
+    linkcolor=colLink,
+    urlcolor=colLink,
+    citecolor=colLink,
+	bookmarksnumbered
+}
+
+% Line spacing
+\RequirePackage{setspace}
+%\singlespacing
+%\onehalfspacing
+%\doublespacing
+\setstretch{1.15} % custom
+% Paragraph indentation:
+% Indent first line of all paragraphs (including the first),
+% as in IEEE style.
+\let\@afterindentfalse\@afterindenttrue
+
+% Indented blocks.
+\newcommand{\indentBlock}[1]{\noindent\hangafter=0\hangindent=#1\parindent\ignorespaces}
+\newcommand{\indentHang}{\noindent\hangafter=1\hangindent=\parindent\ignorespaces}
+
 % InLine Markup
 \newtcbox{\lib}[1][]{
     on line,
@@ -200,17 +234,6 @@
 	title={\textbf{!} tip},
 	#1
 }
-% Block Quotes
-\newtcolorbox{bquote}[1]{
-    width=\textwidth,
-    fontupper=\sffamily,
-	colback=Z99,
-    colframe=Z99,
-	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0pt,
-	left=20pt,right=10pt,top=10pt,bottom=10pt,
-	% colback=colTipBody,
-}
-
 
 % Code Block
 \newtcblisting{code}[1]{
@@ -229,6 +252,7 @@
 	    \end{tcbclipinterior}
      },
 }
+
 \newtcblisting{literal}{
 	fontupper=\tt,
 	listing engine=minted,
@@ -240,11 +264,9 @@
 	minted options={breaklines,autogobble},
 }
 
-
-% Sidebar
+% Sidebar: wrapp with wrapfigure for float and width
 \newtcolorbox{sidebar}[1]{
 	boxrule=1pt,
-	width=(\textwidth-2mm)/2,
 	colback=colSidebarBody,
 	colbacktitle=colSidebarHead,
 	coltitle=Z1,
@@ -261,7 +283,7 @@
 	title={#1},
 }
 
-% Table Style
+% Table: wrapp with table for labeling
 \newtcolorbox{lazytable}[2][]{
 	enhanced,
 	outer arc=0pt,
@@ -273,19 +295,9 @@
 	tabularx=#2,
 }
 
-% Minted Line Number Colors
-\renewcommand{\theFancyVerbLine}{\sffamily
-\textcolor{Z3}{\scriptsize
-\oldstylenums{\arabic{FancyVerbLine}}}}
-
-\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
-\newcolumntype{Z}{>{\centering\arraybackslash}X}
-\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows
-
 % Length settings
 \setlength{\abovecaptionskip}{5pt plus 3pt minus 2pt} % Caption Upper
 \setlength{\belowcaptionskip}{10pt plus 3pt minus 2pt} % Caption Lower
-\setlength{\parindent}{0pt} % No paragraph indent
-\setlength{\intextsep}{0pt} % Change "top" vertical spacing in wrapfig
-%
+%\setlength{\parindent}{0pt} % No paragraph indent
+%\renewcommand{\familydefault}{\sfdefault}
 \endinput
