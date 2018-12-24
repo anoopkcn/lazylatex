@@ -1,0 +1,291 @@
+%lazylatex.sty
+%
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{lazylatex} [2018/12/23 v0.01 of LaTeX package]
+
+% Packages
+\RequirePackage[
+    left=25.4mm,
+    right=25.4mm,
+    top=20mm,
+    bottom=16mm,
+    headsep=6mm,
+    footskip=6mm]{geometry}
+\RequirePackage[table]{xcolor}
+\RequirePackage{tcolorbox}
+\RequirePackage[outputdir=.texpadtmp]{minted}
+\RequirePackage{tikz}
+
+% following are for tables
+\RequirePackage{wrapfig}
+\RequirePackage{array,tabularx}
+\RequirePackage{colortbl}
+
+% Package Options
+\tcbuselibrary{minted}
+\tcbuselibrary{skins}
+
+% Color definitions
+\definecolor{Z99}{HTML}{ffffff}
+\definecolor{Z0}{HTML}{000000}
+\definecolor{Z1}{HTML}{333333}
+\definecolor{Z2}{HTML}{666666}
+\definecolor{Z3}{HTML}{999999}
+\definecolor{Z4}{HTML}{f7f7f7}
+\definecolor{R0}{HTML}{D62728}
+\definecolor{R1}{HTML}{EE3A43}
+\definecolor{R2}{HTML}{f37279}
+\definecolor{O0}{HTML}{FF7F0E}
+\definecolor{O1}{HTML}{ffad66}
+\definecolor{O2}{HTML}{ffd6b3}
+\definecolor{B0}{HTML}{1F77B4}
+\definecolor{B1}{HTML}{51a5e1}
+\definecolor{B2}{HTML}{a8d2f0}
+\definecolor{G0}{HTML}{2CA02C}
+\definecolor{G1}{HTML}{5fd35f}
+\definecolor{G2}{HTML}{9be49b}
+\definecolor{Y0}{HTML}{fecb01}
+\definecolor{Y1}{HTML}{fedb4d}
+\definecolor{Y2}{HTML}{feea9a}
+\definecolor{V0}{HTML}{ace600}
+\definecolor{V1}{HTML}{d2ff4d}
+\definecolor{V2}{HTML}{ecffb3}
+%
+
+\definecolor{colPreBody}{HTML}{FFFFFF}
+\definecolor{colPreFrame}{HTML}{D9DEDF}
+\definecolor{colPreText}{HTML}{DE352E}
+
+\definecolor{colLibBody}{HTML}{E5FFE5}
+\definecolor{colLibHead}{HTML}{7FDFA0}
+\definecolor{colLibFrame}{HTML}{61ab54}
+\definecolor{colLibText}{HTML}{404040}
+
+\definecolor{colGuilabelBody}{HTML}{E7F2FA}
+\definecolor{colGuilabelFrame}{HTML}{7FBBE3}
+\definecolor{colGuilabelText}{HTML}{404040}
+
+\definecolor{colNoticeHead}{HTML}{6AB0DE}
+\definecolor{colNoticeBody}{HTML}{E4EFF7}
+
+\definecolor{colWarningHead}{HTML}{F0B27E}
+\definecolor{colWarningBody}{HTML}{FEECCA}
+
+\definecolor{colErrorHead}{HTML}{F19F97}
+\definecolor{colErrorBody}{HTML}{FDF3F2}
+
+\definecolor{colTipHead}{HTML}{18BC9B}
+\definecolor{colTipBody}{HTML}{DBFAF4}
+
+\definecolor{colSidebarHead}{HTML}{E0E4E5}
+\definecolor{colSidebarBody}{HTML}{F2F6F6}
+\definecolor{colSidebarFrame}{HTML}{E0E4E5}
+
+\definecolor{colTableFrame}{HTML}{E0E4E5}
+\definecolor{colTableRowOdd}{HTML}{F2F6F6}
+
+\definecolor{colMintedBg}{HTML}{EDFFCC}
+\definecolor{colMintedRule}{HTML}{E0E4E5}
+\definecolor{colMintedGutter}{HTML}{e4ffb3}
+\definecolor{colMintedLinenos}{HTML}{999999}
+
+\definecolor{colMintedLiteralBg}{HTML}{F8F8F8}
+\definecolor{colMintedLiteralRule}{HTML}{E0E4E5}
+% InLine Markup
+\newtcbox{\lib}[1][]{
+    on line,
+    arc=2pt,
+    boxsep=0pt,
+    left=17pt,right=2.5pt,top=2.5pt,bottom=2.5pt,
+    boxrule=0.5pt,
+    colback=colLibBody,
+    colframe=colLibFrame,
+    coltext=Z0,
+    enhanced,overlay={
+    \begin{tcbclipinterior}
+        \fill[colLibHead] (frame.south west) rectangle ([xshift=15pt]frame.north west);
+        \draw[Z99] (frame.south west) node[xshift=8pt,yshift=8pt,transform shape,rotate=90,scale=0.5] {\textbf{LIB}};
+    \end{tcbclipinterior}
+    },
+}
+\newtcbox{\pre}[1][]{
+    on line,
+    arc=0pt,
+    outer arc=0pt,
+    boxsep=0pt,
+    left=2pt,right=2pt,top=2pt,bottom=2pt,
+    boxrule=0.5pt,
+    colback=colPreBody,
+    colframe=colPreFrame,
+    coltext=colPreText,
+}
+\newtcbox{\guilabel}[1][]{
+    on line,
+    arc=5pt,
+    before upper={\rule[-3pt]{0pt}{10pt}},
+    boxrule=1pt,
+    boxsep=0pt,
+    left=6pt,right=6pt,top=2pt,bottom=2pt,
+    colback=colGuilabelBody,
+    colframe=colGuilabelFrame,
+    coltext=Z0,
+}
+
+% Admonitions
+\newtcolorbox{note}[1][]{
+    boxrule=0pt,
+    width=\textwidth,
+    colback=colNoticeBody,
+    colbacktitle=colNoticeHead,
+    outer arc=0pt,
+    arc=0pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt,
+    toptitle=3pt,
+    bottomtitle=3pt,
+    fonttitle=\sffamily\large,
+    title={\textbf{!} Note},
+    #1
+}
+\newtcolorbox{warning}[1][]{
+    boxrule=0pt,
+    width=\textwidth,
+    colback=colWarningBody,
+    colbacktitle=colWarningHead,
+    outer arc=0pt,
+    arc=0pt,
+    left=10pt,
+    right=10pt,
+    top=10pt,
+    bottom=10pt,
+    toptitle=3pt,
+    bottomtitle=3pt,
+    fonttitle=\sffamily\large,
+    title={\textbf{!} Warning},
+    #1
+}
+\newtcolorbox{error}[1][]{
+	boxrule=0pt,
+	width=\textwidth,
+	colback=colErrorBody,
+	colbacktitle=colErrorHead,
+	outer arc=0pt,
+	arc=0pt,
+	left=10pt,
+	right=10pt,
+	top=10pt,
+	bottom=10pt,
+	toptitle=3pt,
+	bottomtitle=3pt,
+	fonttitle=\sffamily\large,
+	title={\textbf{!} Error},
+	#1
+}
+\newtcolorbox{tip}[1][]{
+	boxrule=0pt,
+	width=\textwidth,
+	colback=colTipBody,
+	colbacktitle=colTipHead,
+	outer arc=0pt,
+	arc=0pt,
+	left=10pt,
+	right=10pt,
+	top=10pt,
+	bottom=10pt,
+	toptitle=3pt,
+	bottomtitle=3pt,
+	fonttitle=\sffamily\large,
+	title={\textbf{!} tip},
+	#1
+}
+% Block Quotes
+\newtcolorbox{bquote}[1]{
+    width=\textwidth,
+    fontupper=\sffamily,
+	colback=Z99,
+    colframe=Z99,
+	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0pt,
+	left=20pt,right=10pt,top=10pt,bottom=10pt,
+	% colback=colTipBody,
+}
+
+
+% Code Block
+\newtcblisting{code}[1]{
+	fontupper=\tt,
+	listing engine=minted,
+	listing only,
+	colback=colMintedBg,
+	colframe=colMintedRule,
+	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
+	left=30pt,right=10pt,top=10pt,bottom=10pt,
+	minted language=#1,
+	minted options={breaklines,autogobble,linenos,numbersep=3mm},
+	enhanced,overlay={
+		\begin{tcbclipinterior}
+			\fill[colMintedGutter] (frame.south west) rectangle ([xshift=30pt]frame.north west);
+	    \end{tcbclipinterior}
+     },
+}
+\newtcblisting{literal}{
+	fontupper=\tt,
+	listing engine=minted,
+	listing only,
+	colback=colMintedLiteralBg,
+	colframe=colMintedLiteralRule,
+	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
+	left=10pt,right=10pt,top=10pt,bottom=10pt,
+	minted options={breaklines,autogobble},
+}
+
+
+% Sidebar
+\newtcolorbox{sidebar}[1]{
+	boxrule=1pt,
+	width=(\textwidth-2mm)/2,
+	colback=colSidebarBody,
+	colbacktitle=colSidebarHead,
+	coltitle=Z1,
+	colframe=colSidebarFrame,
+	outer arc=0pt,
+	arc=0pt,
+	left=10pt,
+	right=10pt,
+	top=10pt,
+	bottom=10pt,
+	toptitle=3pt,
+	bottomtitle=3pt,
+	fonttitle=\sffamily\large,
+	title={#1},
+}
+
+% Table Style
+\newtcolorbox{lazytable}[2][]{
+	enhanced,
+	outer arc=0pt,
+	arc=0pt,
+	fontupper=\normalsize\sffamily,
+	colback=Z99,
+	boxrule=0.5pt,
+	colframe=colTableFrame,
+	tabularx=#2,
+}
+
+% Minted Line Number Colors
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor{Z3}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{Z}{>{\centering\arraybackslash}X}
+\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows
+
+% Length settings
+\setlength{\abovecaptionskip}{5pt plus 3pt minus 2pt} % Caption Upper
+\setlength{\belowcaptionskip}{10pt plus 3pt minus 2pt} % Caption Lower
+\setlength{\parindent}{0pt} % No paragraph indent
+\setlength{\intextsep}{0pt} % Change "top" vertical spacing in wrapfig
+%
+\endinput
