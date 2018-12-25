@@ -9,8 +9,17 @@
 
 \begin{document}
 %
-\section{Inline Markup}
-Documents contain text and may contain inline markup: \pre{inline literals}, \emph{emphasis}, \textbf{strong emphasis}, stand alone links (\url{https://www.wikibooks.org}), external hyperlinks (\href{https://www.wikibooks.org}{wikibooks home}), and \guilabel{some action}. For software library or a package use \lib{PackageName}
+\tableofcontents
+
+\section{Introduction}
+\section{Packages Used}
+\section{Structural Elements}
+Uses native LaTeX structural elements(Section, Subsection, etc,.). Paragraphs are indented even the first paragraph in each section, this can be easily turned off using latex native commands.
+\section{Paragraph Level Markup}
+\subsection{Inline Markup}
+Documents contain text and may contain inline markup: \pre{inline literals}, \emph{emphasis}, \textbf{strong emphasis}, stand alone links (\url{https://www.wikibooks.org}), external hyperlinks (\href{https://www.wikibooks.org}{wikibooks home}), and \guilabel{some action}. For software library or a package use \lib{PackageName} and a \fname{filename.out}
+\section{Lists \& Tables}
+
 \lipsum[1]
 
 \indentBlock{}{is is an indent block tas. Mauris ut leo. Cras viverra this is an indent block tas. Mauris ut leo. Cras viverra metus rhoncus sem. Nulla et lectus vestibulum urna fringilla ultrices. Phasellus eu tellus sit}
@@ -77,7 +86,7 @@ As one can notice line three and four are the same. In order to get the value of
 	Not to be confused with multiplication operator \texttt{*} or the asterisk in front of the pointer data type \texttt{*datatype}
 \end{note}
 %
-\begin{lazycode}[title,label={myCodeLabel},nameref={Code title or whatever}]{go}
+\begin{lazycode}[code title,label={myCodeLabel},nameref={code title}]{go}
 package main
 
 import "fmt"
@@ -108,7 +117,7 @@ Result:
 
 Sed ut \textbf{Table} ~\ref{mytable} unde \textbf{Table} \ref{mytable2} omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
 %
-\begin{wrapfigure}{R}{0.7\textwidth}
+\begin{wrapfigure}{R}{0.6\textwidth}
 	\begin{sidebar}{My Own Heading}
 		Nam dui ligula, fringilla a, euismo d so dales, sollicitudin vel, wisi. Morbi auctor lorem non justo. Nam lacus lib ero, pretium at, lob ortis vitae, ul- tricies et, tellus. Donec aliquet, tortor sed accumsan bib endum, erat ligula aliquet magna, vitae ornare o dio metus a mi. Morbi ac orci et nisl hendrerit mollis. Susp endisse
 	\end{sidebar}
