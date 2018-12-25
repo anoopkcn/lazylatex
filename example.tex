@@ -12,6 +12,7 @@
 \tableofcontents
 
 \section{Introduction}
+\lipsum[1]
 \section{Packages Used}
 \section{Structural Elements}
 Uses native LaTeX structural elements(Section, Subsection, etc,.). Paragraphs are indented even the first paragraph in each section, this can be easily turned off using latex native commands.
@@ -85,6 +86,9 @@ As one can notice line three and four are the same. In order to get the value of
 \begin{note}
 	Not to be confused with multiplication operator \texttt{*} or the asterisk in front of the pointer data type \texttt{*datatype}
 \end{note}
+\begin{note}[My Note Titile]
+	Not to be confused with multiplication operator \texttt{*} or the asterisk in front of the pointer data type \texttt{*datatype}
+\end{note}
 %
 \begin{lazycode}[code title,label={myCodeLabel},nameref={code title}]{go}
 package main
@@ -111,7 +115,12 @@ Result:
 73
 \end{literal}
 
-\begin{warning}this is a warning\end{warning}
+\begin{warning}[My Warning Titile]
+\begin{literal}
+  #leave out the optional title for default.
+\end{literal}
+this is a warning
+\end{warning}
 \begin{tip}{this is a tiphint}\end{tip}
 \begin{error}this is an error\end{error}
 
