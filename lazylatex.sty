@@ -1,9 +1,11 @@
-%lazylatex.sty
+% lazylatex.sty
+% This package is distributed under MIT license,
+% please include LICENSE file when distributing.
 %
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{lazylatex} [2018/12/23 v0.01 of LaTeX package]
 
-% Packages
+% geometry for page setup
 \RequirePackage[
 	left=25.4mm,
 	right=25.4mm,
@@ -12,8 +14,9 @@
 	headsep=6mm,
 	footskip=6mm]{geometry}
 
+% better colour definitions
 \RequirePackage[table]{xcolor}
-% Color definitions
+% Colour definitions
 \definecolor{Z99}{HTML}{ffffff}
 \definecolor{Z0}{HTML}{000000}
 \definecolor{Z1}{HTML}{333333}
@@ -38,7 +41,6 @@
 \definecolor{V0}{HTML}{ace600}
 \definecolor{V1}{HTML}{d2ff4d}
 \definecolor{V2}{HTML}{ecffb3}
-%
 \definecolor{colPreBody}{HTML}{FFFFFF}
 \definecolor{colPreFrame}{HTML}{D9DEDF}
 \definecolor{colPreText}{HTML}{DE352E}
@@ -71,30 +73,34 @@
 \definecolor{colMintedLiteralRule}{HTML}{E0E4E5}
 \definecolor{colLink}{HTML}{2880B9}
 
-%
+% Code blocks are using minted library
+% use -shell-escape upon compilation. 
 \RequirePackage[outputdir=.texpadtmp]{minted}
+% Minted Line Number Colors
+\renewcommand{\theFancyVerbLine}{\sffamily
+\textcolor{Z3}{\scriptsize
+\oldstylenums{\arabic{FancyVerbLine}}}}
+%
 \RequirePackage{tikz}
 
 \RequirePackage{tcolorbox}
 % Package Options
 \tcbuselibrary{minted}
 \tcbuselibrary{skins}
-\tcbuselibrary{xparse}
 
 \RequirePackage{wrapfig}
 \setlength{\intextsep}{0pt} % "top" vertical spacing in wrapfig
+
 % Following are for tables
 \RequirePackage{array,tabularx}
 \RequirePackage{colortbl}
-
-% Minted Line Number Colors
-\renewcommand{\theFancyVerbLine}{\sffamily
-\textcolor{Z3}{\scriptsize
-\oldstylenums{\arabic{FancyVerbLine}}}}
 % Tabularx settings
 \newcolumntype{Y}{>{\raggedleft\arraybackslash}X} % column align right
 \newcolumntype{Z}{>{\centering\arraybackslash}X} % column align center
-\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows
+\newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}% column Left align with width in % of total
+\newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}% column right align with width in % of total
+\newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}% column center align with width in % of total
+%\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows moved to lazytable
 
 % PDF styling and links
 \RequirePackage{hyperref}
@@ -134,16 +140,21 @@
 \newtcbox{\lib}[1][]{
 	on line,
 	arc=2pt,
+%	height=20pt,
+%	valign=center,
+	fontupper=\sffamily,
 	boxsep=0pt,
-	left=17pt,right=2.5pt,top=2.5pt,bottom=2.5pt,
+	before upper={\rule[-3pt]{0pt}{10pt}},
+	left=17pt,right=4pt,top=4pt,bottom=4pt,
 	boxrule=0.7pt,
 	colback=colLibBody,
 	colframe=colLibFrame,
 	coltext=Z0,
 	enhanced,overlay={
 	\begin{tcbclipinterior}
+		\sffamily;
 	    \fill[colLibHead] (frame.south west) rectangle ([xshift=15pt]frame.north west);
-	    \draw[Z99] (frame.south west) node[xshift=8pt,yshift=8pt,transform shape,rotate=90,scale=0.5] {\textbf{LIB}};
+	    \draw[Z99] (frame.south west) node[xshift=8pt,yshift=10pt,transform shape,rotate=90,scale=0.65] {\textbf{LIB}};
 	\end{tcbclipinterior}
 	},
 }
@@ -153,6 +164,7 @@
 	arc=0pt,
 	outer arc=0pt,
 	boxsep=0pt,
+	before upper={\rule[-3pt]{0pt}{10pt}},
 	left=4pt,right=4pt,top=2pt,bottom=2pt,
 	boxrule=0.7pt,
 	colback=Z99,
@@ -164,6 +176,7 @@
 	arc=0pt,
 	outer arc=0pt,
 	boxsep=0pt,
+	before upper={\rule[-3pt]{0pt}{10pt}},
 	left=2pt,right=2pt,top=2pt,bottom=2pt,
 	boxrule=0.7pt,
 	colback=colPreBody,
@@ -174,6 +187,7 @@
 	on line,
 	arc=5pt,
 	before upper={\rule[-3pt]{0pt}{10pt}},
+	fontupper=\sffamily,
 	boxrule=1pt,
 	boxsep=0pt,
 	left=6pt,right=6pt,top=2pt,bottom=2pt,
@@ -326,15 +340,26 @@ list inside=code]{lazycode}[2][]{
 }
 
 % Table: wrapp with table for labeling
-\newtcolorbox{lazytable}[2][]{
+\newtcolorbox{lazytable}[2][\textwidth]{
 	enhanced,
 	outer arc=0pt,
 	arc=0pt,
+	width=#1,
 	fontupper=\normalsize\sffamily,
 	colback=Z99,
 	boxrule=0.5pt,
 	colframe=colTableFrame,
-	tabularx=#2,
+	tabularx*={\rowcolors{1}{Z99}{colTableRowOdd}}#2,
+}
+
+% Lists
+\newenvironment{llist}[2][\textwidth]
+{\tabularx{#1}{#2}}
+{\endtabularx}
+
+% Hlist
+\newcommand{\litem}[1]{%
+$\bullet$\ #1
 }
 
 % Length settings
