@@ -134,7 +134,7 @@ Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et
 \end{tip}
 
 \subsection{Sidebar}
-The \pre{sidebar} feature is rendered with \lib{wrapfig} latex package for placing it wherever in the latex document also for the witdth of the sidebar. Adding caption and label is also possible. Text will wrap around the sidebar, \textbf{Example}:
+The \pre{sidebar} feature is rendered with \lib{wrapfig} latex package for placing it wherever in the latex document also for the witdth of the sidebar. Adding caption and label is also possible. Text will wrap around the sidebar, \textbf{Example}:\\
 
 \lipsum[1]
 \begin{wrapfigure}{r!}{0.6\textwidth}
@@ -178,6 +178,7 @@ Numbered and bulleted lists work pretty well in latex but it doesn't provide opt
 	Refer Section ~\ref{listntables} for values each option can take.
 \end{docEnvironment}
 \end{tip}
+\bigskip
 
 \begin{llist}[0.5\textwidth]{XXX}
   \litem{item 00} & \litem{item 01} & \litem{item 02}\\
@@ -194,6 +195,7 @@ Numbered and bulleted lists work pretty well in latex but it doesn't provide opt
 	Refer Section ~\ref{listntables} for values each option can take.
 \end{docEnvironment}
 \end{tip}
+\bigskip
 
 \begin{llist}{L{0.35}X}
 	\textbf{Author:} &	Anoop Chandran \\
@@ -218,8 +220,9 @@ Three examples are shown for Tables however one can combine the features of all 
 	Refer Section ~\ref{listntables} for values each option can take.
 \end{docEnvironment}
 \end{tip}
+\bigskip
 
-\tcbdocmarginnote{variable width}
+\tcbdocmarginnote{variable width columns}
 \begin{lazytable}{L{1}|R{0.5}|R{0.5}|C{2}}
   label 00 & label 01 & label 02 & label 03 \\
   item 10  & item 11  & item 12  & item 13  \\
@@ -236,7 +239,9 @@ The following examples have captions, to do this one has to wrap \pre{lazytable}
 	Refer Section ~\ref{listntables} for values each option can take.
 \end{docEnvironment}
 \end{tip}
-\tcbdocmarginnote{fixed width}
+\bigskip
+
+\tcbdocmarginnote{fixed width columns}
 \begin{table}[h!]
 	\begin{lazytable}{X||Y|Y|Y|Y|Y}
 	\bf Group & \bf One     & \bf Two     & \bf Three    & \bf Four     & \bf Sum\\
@@ -263,6 +268,7 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 	Refer Section ~\ref{listntables} for values each option can take.
 \end{docEnvironment}
 \end{tip}
+\bigskip
 
 \begin{table}[h!]
 \begin{center}
@@ -287,17 +293,20 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 \end{center}
 \end{table}
 %
+\noindent
+\textbf{Example 4:}\\
+
 \begin{table}[h!]
 	\begin{lazytable}{L{1.25}|C{0.75}|C{0.5}|C{0.5}}
 		\bf Header row,(header rows optional) & \bf Header 2     & \bf Header 3     & \bf Header 4\\
-		\hline
-		\hline
+		\hline\hline
 		body row 1, column 1 & column 2 & column 3   & column 4\\
 		\hline
 		body row 2 & \multicolumn{3}{c}{Cells may span columns}\\
 		\hline
 		body row 3  & & & \\
-		body row 4  &  & &\\
+		\hline
+		body row 4  & & & \\
 		\hline
 		body row 5  & \multicolumn{3}{c}{Cells may also be empty}\\
 	\end{lazytable}

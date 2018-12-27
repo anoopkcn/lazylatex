@@ -339,7 +339,7 @@ list inside=code]{lazycode}[2][]{
 	title=#1,
 }
 
-% Table: wrapp with table for labeling
+% Table: wrap with `table` for label
 \newtcolorbox{lazytable}[2][\textwidth]{
 	enhanced,
 	outer arc=0pt,
@@ -347,7 +347,7 @@ list inside=code]{lazycode}[2][]{
 	width=#1,
 	fontupper=\normalsize\sffamily,
 	colback=Z99,
-	boxrule=0.5pt,
+	boxrule=1pt,
 	colframe=colTableFrame,
 	tabularx*={\rowcolors{1}{Z99}{colTableRowOdd}}#2,
 }
@@ -357,7 +357,7 @@ list inside=code]{lazycode}[2][]{
 {\tabularx{#1}{#2}}
 {\endtabularx}
 
-% Hlist
+% for Hlist
 \newcommand{\litem}[1]{%
 $\bullet$\ #1
 }
