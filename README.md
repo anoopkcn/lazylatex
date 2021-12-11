@@ -16,4 +16,4 @@ lazylatex is aLaTeX package inspired by sphinx-rtd-theme. Build with tcolorbox, 
 ### Tables
 ![table-1](./docs/img/table_1.png)
 ![table-2](./docs/img/table_2.png)
-## Please fork!!
+## Please report issues!!
