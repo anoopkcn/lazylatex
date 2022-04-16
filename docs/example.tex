@@ -6,10 +6,9 @@
 \usepackage{lazylatex}
 \usepackage{lipsum}
 \usepackage{amsmath}
-\tcbuselibrary{documentation}
+\tcbuselibrary{documentation} %tcbuselibrary comes from lazylatex
 
 \begin{document}
-%
 \tableofcontents
 
 \section{Introduction}
@@ -19,7 +18,6 @@
 	\item \lib{geometry} - for page dimension setup
 	\item \lib{xcolor} - for better colour definitions
 	\item \lib{tcolorbox} - for inline markup and admonitions
-	\item \lib{minted} - for code blocks
 	\item \lib{tikz} - additional tex features(rotation and placing) also for graphics
 	\item \lib{warapfig} - for floating area(size and place) when creating sidebar
 	\item \lib{tabularx}, \lib{array}, \lib{colortbl} - fot styling tables
@@ -32,7 +30,7 @@ Uses native LaTeX structural elements(Section, Subsection, etc,.). Paragraphs ar
 \section{Paragraph Level Markup}
 
 \subsection{Inline Markup}
-Documents contain text and may contain inline markup: \pre{inline literals}, \emph{emphasis}, \textbf{strong emphasis}, stand alone links (\url{https://www.wikibooks.org}), external hyperlinks (\href{https://www.wikibooks.org}{wikibooks home}),internal reference (Eq:\ref{eqn:euler}, Code:\ref{myCodeLabel} with \nameref{myCodeLabel}) and \guilabel{some action}. For software library or a package use \lib{PackageName} and a file names are indicated with \fname{filename.ext}
+Documents contain text and may contain inline markup: \pre{inline literals}, \emph{emphasis}, \textbf{strong emphasis}, stand alone links (\url{https://www.wikibooks.org}), external hyperlinks (\href{https://www.wikibooks.org}{wikibooks home}),internal reference (Eq:\ref{eqn:euler}, Code:\ref{myCodeLabel} with \nameref{myCodeLabel}) and \guilabel{some action}. For software library or a package use \lib{PackageName} and file names are indicated with \fname{filename.ext}
 
 \subsection{Math}
 As usual,
@@ -69,34 +67,11 @@ Both \cs{indentBlock} and \cs{indentHang} commands must preceed a blank line or 
 
 
 \subsection{Code Blocks}
-There are three styles of code blocks are possible in \lib{lazylatex}, 1) \pre{literal} code blocks, \pre{code} blocks with syntax highlighting and line number, 3) \pre{lazycode} with properties of \pre{code} and captions+label. Examples:
-
-\noindent
-\textbf{normal code block}
-\begin{code}{go}
-package main
-
-import "fmt"
-
-func main() {
-  var x int = 7
-  fmt.Println(x)
-  fmt.Println(&x)
-}
-\end{code}\\
-
-\noindent
-\textbf{literal code block}\\
-If we run the above program
-\begin{literal}
->> go run pointers.go
-7
-0xc00001c0a8
-\end{literal}\\
+code blocks are enabled using \lib{listings} package. A version of the \pre{github-light} theme is replicated for the code blocks. Examples:
 
 \noindent
 \textbf{captioned code block}
-\begin{lazycode}[Code Caption,label={myCodeLabel},nameref={code caption}]{go}
+\begin{lstlisting}[language=go]
 package main
 
 import "fmt"
@@ -109,7 +84,7 @@ func main() {
   fmt.Println(xptr)
   fmt.Println(*xptr)
 }
-\end{lazycode}
+\end{lstlisting}
 
 \subsection{Admonitions}
 There are four admonitions \pre{note}, \pre{tip}, \pre{warning} and \pre{error}. They all take one optional argument which is the title of the admonition. If not given they have a default value of \textbf{!Note}, \textbf{!Tip}, \textbf{!Warning} and \textbf{!Error} respectively. Examples:\\
@@ -138,9 +113,9 @@ The \pre{sidebar} feature is rendered with \lib{wrapfig} latex package for placi
 
 \lipsum[1]
 \begin{wrapfigure}{r!}{0.6\textwidth}
-	\begin{sidebar}{My Heading}
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu lib ero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-	\end{sidebar}
+	\begin{lsidebar}{My Heading}
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Ut purus elit, vestibulum ut, placerat ac, adipiscing vitae, felis. Curabitur dictum gravida mauris. Nam arcu lib ero, nonummy eget, consectetuer id, vulputate a, magna. Donec vehicula augue eu neque. Pellentesque habitantmorbi tristique senectus et netus et malesuada fames ac turpis egestas.
+	\end{lsidebar}
 \end{wrapfigure}
 \lipsum[2]
 
@@ -223,11 +198,11 @@ Three examples are shown for Tables however one can combine the features of all 
 \bigskip
 
 \tcbdocmarginnote{variable width columns}
-\begin{lazytable}{L{1}|R{0.5}|R{0.5}|C{2}}
+\begin{ltable}{L{1}|R{0.5}|R{0.5}|C{2}}
   label 00 & label 01 & label 02 & label 03 \\
   item 10  & item 11  & item 12  & item 13  \\
   item 20  & item 21  & item 22  & item 23  \\
-\end{lazytable}
+\end{ltable}
 
 The following examples have captions, to do this one has to wrap \pre{lazytable} inside a \pre{table} environment. Caption and lablel would be the contents of this table but outside \pre{lazytable}\\
 
@@ -243,7 +218,7 @@ The following examples have captions, to do this one has to wrap \pre{lazytable}
 
 \tcbdocmarginnote{fixed width columns}
 \begin{table}[h!]
-	\begin{lazytable}{X||Y|Y|Y|Y|Y}
+	\begin{ltable}{X||Y|Y|Y|Y|Y}
 	\bf Group & \bf One     & \bf Two     & \bf Three    & \bf Four     & \bf Sum\\
 	\hline
 	\hline
@@ -254,7 +229,7 @@ The following examples have captions, to do this one has to wrap \pre{lazytable}
 	Blue  & 3000.00 & 4000.00 &  5000.00 &  6000.00 & 18000.00\\
 	\hline
 	Sum   & 6000.00 & 9000.00 & 12000.00 & 15000.00 & 42000.00
-	\end{lazytable}
+	\end{ltable}
 	\caption{this is a table}
 	\label{mytable}
 \end{table}
@@ -272,7 +247,7 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 
 \begin{table}[h!]
 \begin{center}
-	\begin{lazytable}[0.6\textwidth]{Z|Z|Z|Z}
+	\begin{ltable}[0.6\textwidth]{Z|Z|Z|Z}
 	\bf Group & \bf One     & \bf Two     & \bf Three\\
 	\hline
 	\hline
@@ -287,8 +262,8 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 	Blue  & 3000.00 & 4000.00   & 18000.00\\
 	\hline
 	Gray  & 3000.00 & 4000.00  & 18000.00\\
-	\end{lazytable}
-	\caption{this is a table2}
+	\end{ltable}
+	\caption{This is a table-2}
 	\label{mytable2}
 \end{center}
 \end{table}
@@ -297,8 +272,8 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 \textbf{Example 4:}\\
 
 \begin{table}[h!]
-	\begin{lazytable}{L{1.25}|C{0.75}|C{0.5}|C{0.5}}
-		\bf Header row,(header rows optional) & \bf Header 2     & \bf Header 3     & \bf Header 4\\
+	\begin{ltable}{L{1.25}|C{0.75}|C{0.5}|C{0.5}}
+		\bf Header row,(header rows optional) & \bf Header 2 & \bf Header 3     & \bf Header 4\\
 		\hline\hline
 		body row 1, column 1 & column 2 & column 3   & column 4\\
 		\hline
@@ -309,8 +284,8 @@ To align a table with reduced with at the center of the page, wrap the \pre{lazy
 		body row 4  & & & \\
 		\hline
 		body row 5  & \multicolumn{3}{c}{Cells may also be empty}\\
-	\end{lazytable}
-	\caption{this is a table2}
+	\end{ltable}
+	\caption{This is a table-3}
 	\label{mytable2}
 \end{table}
 
