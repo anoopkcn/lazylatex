@@ -139,13 +139,13 @@
 % InLine Markup
 \newtcbox{\lib}[1][]{
 	on line,
-	arc=2pt,
+	arc=1.5pt,
 %	height=20pt,
 %	valign=center,
 	fontupper=\sffamily,
 	boxsep=0pt,
 	before upper={\rule[-3pt]{0pt}{10pt}},
-	left=17pt,right=4pt,top=4pt,bottom=4pt,
+	left=12pt,right=2pt,top=2pt,bottom=0pt,
 	boxrule=0.7pt,
 	colback=colLibBody,
 	colframe=colLibFrame,
@@ -153,8 +153,8 @@
 	enhanced,overlay={
 	\begin{tcbclipinterior}
 		\sffamily;
-	    \fill[colLibHead] (frame.south west) rectangle ([xshift=15pt]frame.north west);
-	    \draw[Z99] (frame.south west) node[xshift=8pt,yshift=10pt,transform shape,rotate=90,scale=0.65] {\textbf{LIB}};
+	    \fill[colLibHead] (frame.south west) rectangle ([xshift=10pt]frame.north west);
+	    \draw[Z99] (frame.south west) node[xshift=5pt,yshift=7.5pt,transform shape,rotate=90,scale=0.65] {\textbf{LIB}};
 	\end{tcbclipinterior}
 	},
 }
