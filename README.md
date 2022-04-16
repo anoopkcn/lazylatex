@@ -10,7 +10,7 @@ lazylatex is aLaTeX package inspired by sphinx-rtd-theme. Build with tcolorbox, 
   - `lazytable` -> `ltable`
   
 ## Some Features
-ℹ️ IMPORTANT! **Please see `docs/example.pdf` and the source `docs/examples.tex` for a list of all features and how to use them.** The following is a few screenshorts from the `docs/example.pdf` document. 
+ℹ️ IMPORTANT! **Please see `docs/example.pdf` and the source `docs/example.tex` for a list of all features and how to use them.** The following is a few screenshorts from the `docs/example.pdf` document. 
 ### Inline Markup
 ![Inline-Markup](./docs/img/inline_markup.png)
 ### Code Blocks
