@@ -9,7 +9,7 @@
 #       avoid typing PROJECT=<filename without extension> to the make command
 #
 PROJECT=example
-TEMPDIR=.texpadtmp
+TEMPDIR=build
 PDFLATEX_FLAGS=-file-line-error -interaction=nonstopmode -synctex=1 -shell-escape -output-directory=$(TEMPDIR) 
 
 all: compile
