@@ -5,7 +5,7 @@ lazylatex is aLaTeX package inspired by sphinx-rtd-theme. Build with tcolorbox, 
 **Breaking changes:**
 - IMPORTANT: `minted` package is no longer used for code blocks(Confilics with different python environments and users were having problems installing. Problems with `shell-escape` on xelatex)
 - `listings` package is used to handle code block with added github-light-theme
-- Nmae changes:
+- Name changes:
   - `sidebar` -> `lsidebar`
   - `lazytable` -> `ltable`
   
