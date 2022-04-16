@@ -1,3 +1,4 @@
 .texpadtmp
 *.log
 fonts/
+.DS_Store
