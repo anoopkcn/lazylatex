@@ -17,7 +17,6 @@ all: compile
 compile: 
 	@mkdir -p $(TEMPDIR)
 	@pdflatex $(PDFLATEX_FLAGS) $(PROJECT).tex
-	@cp $(TEMPDIR)/$(PROJECT).log .
 	@mv $(TEMPDIR)/$(PROJECT).pdf .
 
 .PHONY: compile
