@@ -6,7 +6,7 @@ Please see `docs/example.pdf` for a list of all features and how to use them.
 ### Inline Markup
 ![Inline-Markup](./docs/img/inline_markup.png)
 ### Code Blocks
-![code-blocks](./docs/img/code_blocks.png)
+![code-blocks](./docs/img/code_blocks_new.png)
 ### Admonitions
 ![admonitions](./docs/img/admonitions.png)
 ### Sidebar
