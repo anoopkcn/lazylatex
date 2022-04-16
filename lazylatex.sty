@@ -3,7 +3,7 @@
 % please include LICENSE file when distributing.
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{lazylatex} [2018/12/23 v0.01 of LaTeX package]
+\ProvidesPackage{lazylatex} [2022/04/16 v1.01 of LaTeX package]
 
 % geometry for page setup
 \RequirePackage[
@@ -65,30 +65,17 @@
 \definecolor{colSidebarFrame}{HTML}{E0E4E5}
 \definecolor{colTableFrame}{HTML}{E0E4E5}
 \definecolor{colTableRowOdd}{HTML}{F2F6F6}
-\definecolor{colMintedBg}{HTML}{EDFFCC}
-\definecolor{colMintedRule}{HTML}{E0E4E5}
-\definecolor{colMintedGutter}{HTML}{e4ffb3}
-\definecolor{colMintedLinenos}{HTML}{999999}
-\definecolor{colMintedLiteralBg}{HTML}{F8F8F8}
-\definecolor{colMintedLiteralRule}{HTML}{E0E4E5}
-\definecolor{colLink}{HTML}{2880B9}
 
-% Code blocks are using minted library
-% use -shell-escape upon compilation. 
-\RequirePackage[outputdir=.texpadtmp]{minted}
-% Minted Line Number Colors
-\renewcommand{\theFancyVerbLine}{\sffamily
-\textcolor{Z3}{\scriptsize
-\oldstylenums{\arabic{FancyVerbLine}}}}
-%
+\RequirePackage{listings}
+
 \RequirePackage{tikz}
 
 \RequirePackage{tcolorbox}
 % Package Options
-\tcbuselibrary{minted}
 \tcbuselibrary{skins}
 
 \RequirePackage{wrapfig}
+
 \setlength{\intextsep}{0pt} % "top" vertical spacing in wrapfig
 
 % Following are for tables
@@ -100,7 +87,7 @@
 \newcolumntype{L}[1]{>{\hsize=#1\hsize\raggedright\arraybackslash}X}% column Left align with width in % of total
 \newcolumntype{R}[1]{>{\hsize=#1\hsize\raggedleft\arraybackslash}X}% column right align with width in % of total
 \newcolumntype{C}[1]{>{\hsize=#1\hsize\centering\arraybackslash}X}% column center align with width in % of total
-%\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows moved to lazytable
+%\rowcolors{1}{Z99}{colTableRowOdd} % Coloring Odd rows moved to ltable
 
 % PDF styling and links
 \RequirePackage{hyperref}
@@ -154,7 +141,7 @@
 	\begin{tcbclipinterior}
 		\sffamily;
 	    \fill[colLibHead] (frame.south west) rectangle ([xshift=10pt]frame.north west);
-	    \draw[Z99] (frame.south west) node[xshift=5pt,yshift=7.5pt,transform shape,rotate=90,scale=0.65] {\textbf{LIB}};
+	    \draw[Z99] (frame.south west) node[xshift=5pt,yshift=7.5pt,transform shape,rotate=90,scale=0.5] {\textbf{LIB}};
 	\end{tcbclipinterior}
 	},
 }
@@ -263,65 +250,9 @@
 }
 
 % Code Block
-\newtcblisting[auto counter,number format=\arabic,
-list inside=code]{code}[1]{
-	fontupper=\tt,
-	listing engine=minted,
-	listing only,
-	colback=colMintedBg,
-	colframe=colMintedRule,
-	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
-	left=30pt,right=10pt,top=10pt,bottom=10pt,
-	minted language=#1,
-	minted options={breaklines,autogobble,linenos,numbersep=3mm},
-	enhanced,overlay={
-	\begin{tcbclipinterior}
-		\fill[colMintedGutter] (frame.south west) rectangle ([xshift=30pt]frame.north west);
-	\end{tcbclipinterior}
-	},
-}
-
-% Usage:
-% \begin{lazycode}[This is the title,   label={myCodeLabel},nameref={Code title or whatever}]{<programing language>}
-% ...
-% \end{lazycode}
-
-\newtcblisting[auto counter,number format=\arabic,
-list inside=code]{lazycode}[2][]{
-	fontupper=\tt,
-	listing engine=minted,
-	listing only,
-	colback=colMintedBg,
-	colframe=colMintedRule,
-	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
-	left=30pt,right=10pt,top=10pt,bottom=10pt,
-	title=Code \thetcbcounter: #1,
-	attach boxed title to bottom center,
-	colbacktitle=Z99,coltitle=Z0,
-	boxed title style={colframe=Z99},
-	minted language=#2,
-	minted options={breaklines,autogobble,linenos,numbersep=3mm},
-	enhanced,overlay={
-	\begin{tcbclipinterior}
-		\fill[colMintedGutter] (frame.south west) rectangle ([xshift=30pt]frame.north west);
-	\end{tcbclipinterior}
-	},
-}
-
-
-\newtcblisting{literal}{
-	fontupper=\tt,
-	listing engine=minted,
-	listing only,
-	colback=colMintedLiteralBg,
-	colframe=colMintedLiteralRule,
-	arc=0pt,outer arc=0pt,boxsep=0pt,boxrule=0.5pt,
-	left=10pt,right=10pt,top=10pt,bottom=10pt,
-	minted options={breaklines,autogobble},
-}
 
 % Sidebar: wrapp with wrapfigure for float and width
-\newtcolorbox{sidebar}[1]{
+\newtcolorbox{lsidebar}[1]{
 	boxrule=1pt,
 	colback=colSidebarBody,
 	colbacktitle=colSidebarHead,
@@ -340,7 +271,7 @@ list inside=code]{lazycode}[2][]{
 }
 
 % Table: wrap with `table` for label
-\newtcolorbox{lazytable}[2][\textwidth]{
+\newtcolorbox{ltable}[2][\textwidth]{
 	enhanced,
 	outer arc=0pt,
 	arc=0pt,
@@ -367,4 +298,50 @@ $\bullet$\ #1
 \setlength{\belowcaptionskip}{10pt plus 3pt minus 2pt} % Caption Lower
 %\setlength{\parindent}{0pt} % No paragraph indent
 %\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{comment}{HTML}{6e7781}
+\definecolor{constant}{HTML}{0550ae}
+\definecolor{entity}{HTML}{8250df}
+\definecolor{keyword}{HTML}{cf222e}
+\definecolor{string}{HTML}{0a3069}
+\definecolor{variable}{HTML}{953800}
+\definecolor{string-regexp}{HTML}{116329}
+\definecolor{fg-default}{HTML}{24292f}
+\definecolor{fg-muted}{HTML}{57606a}
+\definecolor{fg-subtle}{HTML}{6e7781}
+\definecolor{canvas-default}{HTML}{ffffff}
+\definecolor{canvas-subtle}{HTML}{f6f8fa}
+\definecolor{border-default}{HTML}{d0d7de}
+\definecolor{accent-fg}{HTML}{0969da}
+\definecolor{accent-emphasis}{HTML}{0969da}
+\definecolor{attention-subtle}{HTML}{fff8c5}
+
+\lstdefinestyle{github-light-theme}{
+    backgroundcolor=\color{canvas-subtle}, 
+    commentstyle=\color{comment},
+    keywordstyle=\color{keyword},
+    numberstyle=\color{fg-subtle},
+    stringstyle=\color{string},
+    identifierstyle=\color{fg-default},
+    rulecolor=\color{border-default},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=12pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    frame=single,
+    framesep=30pt,
+    xleftmargin=30pt,
+    xrightmargin=30pt,
+}
+
+\lstset{style=github-light-theme}
+
+
 \endinput
