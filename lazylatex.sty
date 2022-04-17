@@ -68,6 +68,53 @@
 
 \RequirePackage{listings}
 
+
+\definecolor{comment}{HTML}{6e7781}
+\definecolor{constant}{HTML}{0550ae}
+\definecolor{entity}{HTML}{8250df}
+\definecolor{keyword}{HTML}{cf222e}
+\definecolor{string}{HTML}{0a3069}
+\definecolor{variable}{HTML}{953800}
+\definecolor{string-regexp}{HTML}{116329}
+\definecolor{fg-default}{HTML}{24292f}
+\definecolor{fg-muted}{HTML}{57606a}
+\definecolor{fg-subtle}{HTML}{6e7781}
+\definecolor{canvas-default}{HTML}{ffffff}
+\definecolor{canvas-subtle}{HTML}{f6f8fa}
+\definecolor{border-default}{HTML}{d0d7de}
+\definecolor{accent-fg}{HTML}{0969da}
+\definecolor{accent-emphasis}{HTML}{0969da}
+\definecolor{attention-subtle}{HTML}{fff8c5}
+
+\lstdefinestyle{github-light-theme}{
+    backgroundcolor=\color{canvas-subtle}, 
+    commentstyle=\color{comment},
+    keywordstyle=\color{keyword},
+    numberstyle=\small\color{fg-subtle},
+    stringstyle=\color{string},
+    identifierstyle=\color{fg-default},
+    rulecolor=\color{border-default},
+    basicstyle=\ttfamily,
+    breakatwhitespace=false,      
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=0pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+	frame=single,
+    framesep=15pt,
+	resetmargins=true,
+    xleftmargin=15pt,
+    xrightmargin=15pt,
+}
+
+\lstset{style=github-light-theme}
+
+
 \RequirePackage{tikz}
 
 \RequirePackage{tcolorbox}
@@ -277,9 +324,9 @@
 	arc=0pt,
 	width=#1,
 	fontupper=\normalsize\sffamily,
-	colback=Z99,
-	boxrule=1pt,
-	colframe=colTableFrame,
+	colback=border-default,
+	% boxrule=0pt,
+	% colframe=border-default,
 	tabularx*={\rowcolors{1}{Z99}{colTableRowOdd}}#2,
 }
 
@@ -298,50 +345,5 @@ $\bullet$\ #1
 \setlength{\belowcaptionskip}{10pt plus 3pt minus 2pt} % Caption Lower
 %\setlength{\parindent}{0pt} % No paragraph indent
 %\renewcommand{\familydefault}{\sfdefault}
-
-\definecolor{comment}{HTML}{6e7781}
-\definecolor{constant}{HTML}{0550ae}
-\definecolor{entity}{HTML}{8250df}
-\definecolor{keyword}{HTML}{cf222e}
-\definecolor{string}{HTML}{0a3069}
-\definecolor{variable}{HTML}{953800}
-\definecolor{string-regexp}{HTML}{116329}
-\definecolor{fg-default}{HTML}{24292f}
-\definecolor{fg-muted}{HTML}{57606a}
-\definecolor{fg-subtle}{HTML}{6e7781}
-\definecolor{canvas-default}{HTML}{ffffff}
-\definecolor{canvas-subtle}{HTML}{f6f8fa}
-\definecolor{border-default}{HTML}{d0d7de}
-\definecolor{accent-fg}{HTML}{0969da}
-\definecolor{accent-emphasis}{HTML}{0969da}
-\definecolor{attention-subtle}{HTML}{fff8c5}
-
-\lstdefinestyle{github-light-theme}{
-    backgroundcolor=\color{canvas-subtle}, 
-    commentstyle=\color{comment},
-    keywordstyle=\color{keyword},
-    numberstyle=\color{fg-subtle},
-    stringstyle=\color{string},
-    identifierstyle=\color{fg-default},
-    rulecolor=\color{border-default},
-    basicstyle=\ttfamily,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,                    
-    keepspaces=true,                 
-    numbers=left,                    
-    numbersep=12pt,                  
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,                  
-    tabsize=2,
-    frame=single,
-    framesep=30pt,
-    xleftmargin=30pt,
-    xrightmargin=30pt,
-}
-
-\lstset{style=github-light-theme}
-
 
 \endinput

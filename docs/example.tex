@@ -70,19 +70,19 @@ Both \cs{indentBlock} and \cs{indentHang} commands must preceed a blank line or 
 code blocks are enabled using \lib{listings} package. A version of the \pre{github-light} theme is replicated for the code blocks. Examples:
 
 \noindent
-\begin{lstlisting}[language=go]
-package main
+\begin{lstlisting}[language=go, caption={Code block caption},label=myCodeLabel]
+	package main
 
-import "fmt"
+	import "fmt"
 
-func main() {
-  var x int = 73
-  var xptr *int = &x
-  fmt.Println(x)
-  fmt.Println(&x)
-  fmt.Println(xptr)
-  fmt.Println(*xptr)
-}
+	func main() {
+	var x int = 73
+	var xptr *int = &x
+	fmt.Println(x)
+	fmt.Println(&x)
+	fmt.Println(xptr)
+	fmt.Println(*xptr)
+	}
 \end{lstlisting}
 
 \subsection{Admonitions}
