@@ -25,7 +25,7 @@ lazylatex is aLaTeX package inspired by sphinx-rtd-theme. Build with tcolorbox, 
 ### Inline Markup
 ![Inline-Markup](./docs/img/inline_markup.png)
 ### Code Blocks
-![code-blocks](./docs/img/code_blocks_new.png)
+![code-blocks](./docs/img/code_blocks.png)
 ### Admonitions
 ![admonitions](./docs/img/admonitions.png)
 ### Sidebar
