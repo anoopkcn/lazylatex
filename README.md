@@ -3,7 +3,7 @@ Because LaTeX shouldnt be boring! :tropical_fish:
 lazylatex is aLaTeX package inspired by sphinx-rtd-theme. Build with tcolorbox, minted, tikz, etc,. Some of the elements are also simulating elements from the tcolorbox manual. 
 # Updates 2022-April
 **Breaking changes:**
-- IMPORTANT: `minted` package is no longer used for code blocks(Confilics with different python environments and users were having problems installing. Problems with `shell-escape` on xelatex)
+- IMPORTANT: `minted` package is no longer used for code blocks(Conflicts with different python environments and users were having problems installing. Problems with `shell-escape` on xelatex)
 - `listings` package is used to handle code block with added github-light-theme
 - Name changes:
   - `sidebar` -> `lsidebar`
